@@ -44,4 +44,23 @@ Filter todos by status `All` / `Active` / `Completed`:
 
 - Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
 - Use the [React TypeScript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript).
-- Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_todo-app-loading-todos/) and add it to the PR description.
+- Replace `<Tania-del>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_todo-app-loading-todos/) and add it to the PR description.
+
+
+// Some important information about how calling callback within element events;
+
+if my callback depends on element event object, i shouldn't call the callback with extra arrow function:
+ example I have onClick on span I should call it as onClick={callback} not onClick={(e) => callback(e)} because
+ it is overkill, but two cases are totaly working;
+
+ another thing is when our callback doesn't have any arguments we shouldnt use extra arrow function as well:
+
+ const callback = () => { whatever here} it doesn't have an argument;
+ onClick={callback} is enough but you can see that people write as onClick={() => {callback()}} it works but it overkill as well;
+
+ and anoter case:
+ const callback = (name: string) => { whatever };
+
+ in this case we have only on working way of using it; onClick={() => {callback('Tania')}} because if use use onClick={callback}
+ you will have an error because instead of name you well have an object with planty of fields which represents event object of element it will look callbac({...plenty of key values }) instead of desire callback('tania'
+ )
